@@ -121,22 +121,23 @@ namespace MagicalSquare
             }
             // some replacements... sorry
             // refactor pls..
-            int[,] replaceMatrix = Eject(matrix, 0, 0, newMatrix.GetLength(0) / 2, newMatrix.GetLength(1) / 2);
-            int[,] tempMatrix = Eject(matrix, 0, matrix.GetLength(1) / 2, newMatrix.GetLength(0) / 2, newMatrix.GetLength(1) / 2);
-            Replace(matrix, replaceMatrix, 0, matrix.GetLength(1) / 2);
+            int nDiv4 = N / 4;
+            int[,] replaceMatrix = Eject(matrix, 0, 0, nDiv4, nDiv4);
+            int[,] tempMatrix = Eject(matrix, 0, N / 2, nDiv4, nDiv4);
+            Replace(matrix, replaceMatrix, 0, N / 2);
             Replace(matrix, tempMatrix, 0, 0);
-            replaceMatrix = Eject(matrix, 1, newMatrix.GetLength(1) / 2, 1, newMatrix.GetLength(0) / 2);
-            tempMatrix = Eject(matrix, 1, newMatrix.GetLength(1) / 2 + matrix.GetLength(1) / 2, 1, newMatrix.GetLength(0) / 2);
-            Replace(matrix, replaceMatrix, 1, newMatrix.GetLength(0) / 2 + matrix.GetLength(1) / 2);
-            Replace(matrix, tempMatrix, 1, newMatrix.GetLength(0) / 2);
-            replaceMatrix = Eject(matrix, 0, newMatrix.GetLength(1) / 2 + 1, newMatrix.GetLength(0) / 2, newMatrix.GetLength(0) / 2);
-            tempMatrix = Eject(matrix, 0, newMatrix.GetLength(1) / 2 + matrix.GetLength(1) / 2 + 1, 1, newMatrix.GetLength(0) / 2);
-            Replace(matrix, replaceMatrix, 0, newMatrix.GetLength(0) / 2 + matrix.GetLength(1) / 2 + 1);
-            Replace(matrix, tempMatrix, 0, newMatrix.GetLength(0) / 2 + 1);
-            replaceMatrix = Eject(matrix, matrix.GetLength(0) - (newMatrix.GetLength(0) / 2) + 1, 0, matrix.GetLength(0) / 2, newMatrix.GetLength(0) / 2 - 1);
-            tempMatrix = Eject(matrix, matrix.GetLength(0) - newMatrix.GetLength(0) / 2 + 1, matrix.GetLength(1) / 2, matrix.GetLength(0) / 2, newMatrix.GetLength(0) / 2 - 1);
-            Replace(matrix, replaceMatrix, matrix.GetLength(0) - newMatrix.GetLength(0) / 2 + 1, matrix.GetLength(1) / 2);
-            Replace(matrix, tempMatrix, matrix.GetLength(0) - (newMatrix.GetLength(0) / 2) + 1, 0);
+            replaceMatrix = Eject(matrix, 1, nDiv4, 1, nDiv4);
+            tempMatrix = Eject(matrix, 1, nDiv4 + N / 2, 1, nDiv4);
+            Replace(matrix, replaceMatrix, 1, nDiv4 + N / 2);
+            Replace(matrix, tempMatrix, 1, nDiv4);
+            replaceMatrix = Eject(matrix, 0, nDiv4 + 1, nDiv4, nDiv4);
+            tempMatrix = Eject(matrix, 0, nDiv4 + N / 2 + 1, 1, nDiv4);
+            Replace(matrix, replaceMatrix, 0, nDiv4 + N / 2 + 1);
+            Replace(matrix, tempMatrix, 0, nDiv4 + 1);
+            replaceMatrix = Eject(matrix, N - nDiv4 + 1, 0, N / 2, nDiv4 - 1);
+            tempMatrix = Eject(matrix, N - nDiv4 + 1, N / 2, N / 2, nDiv4 - 1);
+            Replace(matrix, replaceMatrix, N - nDiv4 + 1, N / 2);
+            Replace(matrix, tempMatrix, N - nDiv4 + 1, 0);
 
         }
 
